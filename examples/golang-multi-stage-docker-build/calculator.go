@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Hi Abhishek.Veeramalla, I am a calculator app ....")
+	fmt.Println("I am a calculator app ....")
 
 	for {
 		// Read input from the user
