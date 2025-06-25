@@ -1,16 +1,19 @@
-FROM ubuntu:latest
+FROM python:3.11-slim
 
-# Set the working directory in the image
+# Set working directory
 WORKDIR /app
 
-# Copy the files from the host file system to the image file system
-COPY . /app
+# Copy only necessary files first (improves layer caching)
+COPY requirements.txt .
 
-# Install the necessary packages
-RUN apt-get update && apt-get install -y python3 python3-pip
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Set environment variables
+# Copy the rest of the app code
+COPY . .
+
+# Set environment variable
 ENV NAME World
 
-# Run a command to start the application
+# Run the app
 CMD ["python3", "app.py"]
